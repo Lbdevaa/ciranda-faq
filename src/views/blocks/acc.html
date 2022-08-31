@@ -1,0 +1,25 @@
+{% if page.metafields["custom_fields"]["faq"] != blank %}
+  <div class="custom-field custom-field__faq custom-field__type--field-collection-json">
+    <div class="accordion"> 
+      {% for item in page.metafields["custom_fields"]["faq"] %}
+        <div class="accordion__item" data-index="{{ forloop.index0 }}" 
+        {% if item["tab"] != blank %}
+          data-tab="{{ item["tab"] }}"
+        {% endif %}
+        >
+            {% if item["question"] != blank %}
+              <div class="accordion__header">
+                <h4 class="accordion__title">{{ item["question"] }}</h4>
+                ⯆
+              </div>
+            {% endif %}
+            {% if item["answer"] != blank %}
+              <div class="accordion__content text-box">
+                {{ item["answer"] }}
+              </div>
+            {% endif %}
+        </div>
+      {% endfor %} 
+    </div>
+  </div>
+{% endif %}

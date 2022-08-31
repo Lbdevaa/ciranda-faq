@@ -1,0 +1,78 @@
+.text-box
+  color: #000
+  h1
+    font-size: em(36px)
+    font-weight: 900
+    margin: 0 0 rem(18px)
+    line-height: 1.41
+    +to(768px)
+      font-size: rem(28px)
+  h2
+    font-size: em(28px)
+    margin: rem(32px) 0 rem(14px)
+    line-height: 1.41
+    +to(768px)
+      font-size: rem(22px)
+  h3, h4, h5
+    font-size: em(24px)
+    margin: rem(30px) 0 rem(15px)
+    line-height: 1.41
+    +to(768px)
+      font-size: rem(20px)
+  p
+    font-size: em(16px)
+    margin: 0 0 rem(8px)
+    line-height: 1.68
+  a
+    font-weight: 600
+    color: #000
+    display: inline-block
+    transform: translateX(0)
+    position: relative
+    transition: .2s ease
+    color: var(--orange)
+    &:hover
+      color: var(--accent)
+
+  ol
+    padding-left: rem(25px)
+    margin-bottom: 15px
+  ul
+    list-style: none
+    margin-bottom: 15px
+    & li::before
+      content: '—'
+      display: inline-block
+      margin-right: 10px
+  li
+    font-size: em(16px)
+    margin: 0 0 rem(8px)
+    line-height: 1.41
+  figure
+    margin: 10px
+    figcaption
+      text-align: center
+      font-style: italic
+      line-height: 1.4
+  img
+    margin: 16px 0 16px
+    object-fit: cover
+    width: 100%
+    max-height: 70vh
+    border-radius: 12px
+    overflow: hidden
+
+  +to(1199px)
+    /* */
+
+  +to(991px)
+    /* */
+
+  +to(767px)
+    /* */
+
+  +to(575px)
+    /* */
+
+  +to(375px)
+    /* */

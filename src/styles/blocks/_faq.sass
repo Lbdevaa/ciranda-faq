@@ -1,0 +1,70 @@
+.section-faq
+  padding-bottom: 218px
+
+.search-content
+  &__header
+    margin-bottom: 46px
+
+.search-box
+  display: flex
+  align-items: center
+  border: 1px solid #D6D6D6
+  border-radius: 4px
+  &__btn
+    outline: none
+    border: none
+    background: transparent
+    padding: rem(8px) rem(13px)
+    cursor: pointer
+    &:hover
+      .sarch-box
+        &__icon
+          transform: scale(1.05)
+          fill: var(--orange)
+  &__icon
+    fill: var(--grey)
+    transition: .2s ease
+    width: 18px
+    height: 18px
+  &__input
+    outline: none
+    border: none
+    font-size: rem(13px)
+    line-height: 1.46
+    flex-grow: 1
+    height: 100%
+    padding: rem(10px)
+
+.search-tabs
+  display: flex
+  gap: 36px
+  list-style: none
+  border-bottom: 1px solid #D6D6D6
+  &__item
+    text-transform: uppercase
+    position: relative
+    font-weight: 500
+    font-size: rem(20px)
+    line-height: 1.45
+    letter-spacing: 0.01em
+    &.active
+      color: var(--orange)
+      &::after
+        position: absolute
+        bottom: -1px
+        left: 0
+        width: 100%
+        height: 3px
+        content: ''
+        background: var(--orange)
+
+.accordion
+  &__title
+    font-weight: 400
+    font-size: rem(20px)
+    line-height: 1.45
+    letter-spacing: 0.01em
+  &__icon
+    width: 11px
+    height: 8px
+    transition: .2s ease

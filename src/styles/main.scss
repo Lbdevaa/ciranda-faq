@@ -1,0 +1,22 @@
+// CSS-файлы библиотек
+@import "vendor/libs";
+
+// Переменные, миксины, функции
+@import "helpers/functions";
+@import "helpers/variables";
+
+// Основное
+@import "fonts";
+@import "settings";
+@import "global";
+
+// БЭМ-блоки
+@import "../blocks/modules";
+
+// Переиспользумые блоки
+@import "blocks/footer";
+@import "blocks/header";
+@import "blocks/text-box";
+@import "blocks/faq";
+
+// Cтраницы 
