@@ -3,29 +3,32 @@
 
 .search-content
   &__header
-    margin-bottom: 46px
+    margin-bottom: 40px
 
 .search-box
   display: flex
   align-items: center
   border: 1px solid #D6D6D6
+  overflow: hidden
   border-radius: 4px
+  margin-bottom: 32px
   &__btn
     outline: none
     border: none
     background: transparent
-    padding: rem(8px) rem(13px)
+    padding: rem(10px) rem(12px)
     cursor: pointer
+    display: flex
     &:hover
-      .sarch-box
+      .search-box
         &__icon
           transform: scale(1.05)
           fill: var(--orange)
   &__icon
     fill: var(--grey)
     transition: .2s ease
-    width: 18px
-    height: 18px
+    width: 20px
+    height: 20px
   &__input
     outline: none
     border: none
@@ -33,7 +36,7 @@
     line-height: 1.46
     flex-grow: 1
     height: 100%
-    padding: rem(10px)
+    padding: 10px 10px 10px 0
 
 .search-tabs
   display: flex
@@ -43,28 +46,119 @@
   &__item
     text-transform: uppercase
     position: relative
+    font-weight: bold
+    font-size: rem(20px)
+    line-height: 1.45
+    letter-spacing: 0.01em
+    cursor: pointer
+    transition: .2s ease
+    padding-bottom: 4px
+    &:hover
+      color: var(--orange)
+    &::after
+      position: absolute
+      bottom: -1px
+      left: 0
+      width: 100%
+      height: 0
+      content: ''
+      transition: .2s ease
+    &.active
+      color: var(--orange)
+      &::after
+        height: 3px
+        background: var(--orange)
+
+.accordion
+  display: none
+  &.active
+    display: block
+  &__header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    cursor: pointer
+    gap: 16px
+    padding-bottom: 8px
+    &:hover
+      color: var(--orange)
+      .accordion
+        &__icon
+          fill: var(--orange)
+  &__title
     font-weight: 500
     font-size: rem(20px)
     line-height: 1.45
     letter-spacing: 0.01em
-    &.active
-      color: var(--orange)
-      &::after
-        position: absolute
-        bottom: -1px
-        left: 0
-        width: 100%
-        height: 3px
-        content: ''
-        background: var(--orange)
-
-.accordion
-  &__title
-    font-weight: 400
-    font-size: rem(20px)
-    line-height: 1.45
-    letter-spacing: 0.01em
+    transition: .2s ease
+    flex: 1
   &__icon
     width: 11px
     height: 8px
     transition: .2s ease
+  &__item
+    transition: .2s ease
+    border-bottom: 1px solid #979797
+    margin-bottom: 26px
+    &:last-child
+      border-bottom: none
+    &.hide
+      animation: .5s hide-box linear
+      animation-fill-mode: forwards
+    &.active
+      .accordion
+        &__icon
+          transform: scale(-1)
+          fill: var(--orange)
+        &__title
+          color: var(--orange)
+        &__content
+          visibility: visible
+          max-height: 600px
+          opacity: 1
+          padding: 8px 0 0
+          margin-bottom: 28px
+  &__content
+    padding-top: 16px
+    visibility: hidden
+    max-height: 0
+    opacity: 0
+    transition: all .2s ease-in-out
+    font-size: rem(20px)
+    line-height: 1.6
+
+@keyframes hide-box
+  0%
+    opacity: 1
+  50%
+    opacity: 0
+    transform: translateY(-30px)
+  100%
+    opacity: 0
+    transform: translateY(-30px)
+    height: 0
+    position: absolute
+
+.accordion-prompt
+  display: none
+  margin-bottom: 80px
+  padding: 40px
+  background: #FFFFFF
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.04)
+  border-radius: 8px
+  &.show
+    display: block
+  &__header
+    font-weight: 600
+    font-size: rem(20px)
+    line-height: 1.4
+    letter-spacing: 0.01em
+    text-transform: uppercase
+    color: #323232
+    p
+      margin-bottom: rem(6px)
+  &__text-box
+    font-size: rem(18px)
+    line-height: 1.55
+    letter-spacing: 0.01em
+    color: #838383
