@@ -9,35 +9,39 @@ document.addEventListener(`DOMContentLoaded`, () => {
   // searchInput.addEventListener('keyup', accordionPrompt && search)
   document.querySelector('.search-box__btn').addEventListener('click', accordionPrompt && search)
 
-  // Найти элементы
+  // find elems
   function search() {
     const filterItems = content.filter((item) => {
       return item.textContent.toLowerCase().indexOf(searchInput.value.toLowerCase()) !== -1
     })
+    const tabActive = document.querySelector('.search-tabs__item.active').dataset.tab
 
     content.forEach(element => {
       const parent = element.closest('.accordion__item')
       parent.classList.add('hide')
+      parent.classList.remove('active')
+      element.innerHTML = element.textContent.replaceAll('<b>', '')
     })
 
     if (filterItems.length) {
       filterItems.forEach((element) => {
         const parent = element.closest('.accordion__item')
-
-        element.innerHTML = element.textContent.replaceAll(searchInput.value, `<b>${searchInput.value}</b>`)
-        parent.classList.remove('hide')
-        parent.classList.add('active')
+        if (tabActive === parent.dataset.tab) {
+          element.innerHTML = element.textContent.replaceAll(searchInput.value, `<b>${searchInput.value}</b>`)
+          parent.classList.remove('hide')
+          parent.classList.add('active')
+        }
       })
     }
     prompt()
   }
 
-  // Отобразить подсказку
+  // show prompt
   function prompt() {
     const activeTab = document.querySelector('.search-tabs__item.active').dataset.tab
-    const hiddenAcc = [...document.querySelector(`.accordion[data-tab="${activeTab}"]`).querySelectorAll('.accordion__item')] || []
+    const acc = [...document.querySelectorAll(`.accordion__item[data-tab="${activeTab}"]`)] || []
 
-    if (hiddenAcc.every(elem => elem.classList.contains('hide'))) {
+    if (acc.every(elem => elem.classList.contains('hide'))) {
       accordionPrompt.classList.add('show')
     } else {
       accordionPrompt.classList.remove('show')
@@ -57,7 +61,24 @@ document.addEventListener(`DOMContentLoaded`, () => {
   }
 
   // tabs
+  let tabNames = []
+  accordionItems.forEach(element => tabNames.push(element.dataset.tab))
+  tabNames = [...new Set(tabNames)]
+
+  generateTabs()
+  function generateTabs() {
+    document.querySelector('.search-tabs').innerHTML =
+      tabNames.map(function (item) {
+        return `
+          <li class="search-tabs__item" data-tab="${item}">
+            ${item}
+          </li>
+        `
+      }).join('')
+  }
+
   const tabs = document.querySelectorAll('.search-tabs__item') || []
+  tabs[0].classList.add('active')
 
   tabs.forEach(element => {
     element.addEventListener('click', () => {
@@ -65,8 +86,8 @@ document.addEventListener(`DOMContentLoaded`, () => {
       tabs.forEach(el => { el.classList.remove('active') })
       element.classList.add('active')
 
-      document.querySelectorAll(`.accordion`).forEach(item => {
-        item.dataset.tab === tabName ? item.classList.add('active') : item.classList.remove('active')
+      document.querySelectorAll(`.accordion__item`).forEach(item => {
+        item.dataset.tab === tabName ? item.classList.remove('hide') : item.classList.add('hide')
       })
       prompt()
     })
